@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "title": "Post1",
+      "date": "",
+      "author_name": "Greet",
+      "content": "bla bla bla"
+    },
+    {
+      "title": "Post2",
+      "date": "",
+      "author_name": "Koen",
+      "content": "bla bla blabla bla blabla bla bla"
+    },
+    {
+      "title": "Post3",
+      "date": "",
+      "author_name": "Daan",
+      "content": "bla bla bla bla bla bla"
+    }
+  ]
+}

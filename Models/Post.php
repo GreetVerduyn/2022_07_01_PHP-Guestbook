@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
-class Post
+
+class
+Post
 {
     private string $title;
     private string $date;
