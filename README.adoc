@@ -21,7 +21,7 @@ for everybody who visits the page.)
 
 * Use at least 2 classes: PostLoader & Post
 * The messages are sorted from new (top) to old (bottom).
-* Make sure the script can handle site defacement attacks: use htmlspecialchars()
+* Make sure the script can handle site defacement attacks: use htmlspecialchars() https://www.php.net/manual/en/function.htmlspecialchars.php
 * Only show the latest 20 posts.
 
 ==== Nice to have features
@@ -31,10 +31,68 @@ for everybody who visits the page.)
 
 
 == How to ?
-====  store the messages?
-* You can store the messages in a file on your system. You can use the brother of file_get_contents()
-for this: file_put_contents() .
+====  store the messages:
+* You can store the messages in a file on your system.
+** file_get_contents() (Reads entire file into a string)  ( https://www.php.net/manual/en/function.file-get-contents.php )
+This function is similar to file(), except that file_get_contents() returns the file in a string, starting at the specified offset up to length bytes.
+On failure, file_get_contents() will return false.
+** file_put_contents() (  )
 * You can either use json_encode() or serialize() to convert your array to a string to store.
+https://www.tutorialrepublic.com/php-tutorial/php-json-parsing.php
+
+ <?php
+          // Assign JSON encoded string to a PHP variable
+ $json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
+         // Decode JSON data to PHP associative array
+ $arr = json_decode($json, true);
+         // Access values from the associative array
+ echo $arr["Peter"];  // Output: 65
+ echo $arr["Harry"];  // Output: 80
+ echo $arr["John"];   // Output: 78
+ echo $arr["Clark"];  // Output: 90
+         // Decode JSON data to PHP object
+ $obj = json_decode($json);
+        // Access values from the returned object
+ echo $obj->Peter;   // Output: 65
+ echo $obj->Harry;   // Output: 80
+ echo $obj->John;    // Output: 78
+ echo $obj->Clark;   // Output: 90
+ ?>
+
+__Or use a foreach loop: __
+
+ <?php
+          // Assign JSON encoded string to a PHP variable
+ $json = '{"Peter":65,"Harry":80,"John":78,"Clark":90}';
+      // Decode JSON data to PHP associative array
+ $arr = json_decode($json, true);
+         // Loop through the associative array
+ foreach($arr as $key=>$value){
+ echo $key . "=>" . $value . "<br>";
+  }
+ echo "<hr>";
+         // Decode JSON data to PHP object
+ $obj = json_decode($json);
+        // Loop through the object
+ foreach($obj as $key=>$value){
+ echo $key . "=>" . $value . "<br>";
+ }
+ ?>
+
+__extract Values from Nested JSON data __
+
+ $arr = json_decode($json, true);
+         // Call the function and print all the values
+ $result = printValues($arr);
+ echo "<h3>" . $result["total"] . " value(s) found: </h3>";
+ echo implode("<br>", $result["values"]);
+ echo "<hr>";
+         // Print a single value
+ echo $arr["book"]["author"] . "<br>";  // Output: J. K. Rowling
+ echo $arr["book"]["characters"][0] . "<br>";  // Output: Harry Potter
+ echo $arr["book"]["price"]["hardcover"];  // Output: $20.32
+ ?>
+
 
 ==== Tips & Advice
 * To keep a good overview of the code we recommend separating the view (html code) as much as possible from the PHP code.
