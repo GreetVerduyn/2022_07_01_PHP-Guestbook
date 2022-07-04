@@ -1,5 +1,5 @@
 body {
-  background-color: antiquewhite;
+  background-color: wheat;
 }
 
 .title {
@@ -16,7 +16,7 @@ body {
   padding: 50px;
 }
 .form #message {
-  height: 150 px;
+  width: 300px;
 }
 
 /*# sourceMappingURL=styles.css.map */

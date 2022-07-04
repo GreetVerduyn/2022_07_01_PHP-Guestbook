@@ -4,14 +4,17 @@ declare(strict_types=1);
 require_once ('./Models/Post.php');
 require_once ('./Models/PostLoader.php');
 
+$postLoader=new PostLoader();
+$jsonArray=$postLoader->getPosts();
+
+if(isset($_POST['message'])){
+    $post=new Post($_POST['title'],'', $_POST['message'], $_POST['authorName']);
+    $postLoader->savePost($post);
+    //var_dump($_POST['title']);
+}
 
 
-$path= "./posts.json";
-
-$file = file_get_contents($path); // = string
-$jsonContent= json_decode($file);
-$jsonArray = $jsonContent->posts;
-//var_dump('jsonArray',$jsonArray);
+//var_dump($_POST)
 
 
 
@@ -36,11 +39,11 @@ $jsonArray = $jsonContent->posts;
 
 
       <?php
-
+var_dump($jsonArray);
       foreach($jsonArray as $key=>$value){
           echo "<div class='title'>".$value->title."</div>";
-          echo "<div class='author'>".$value->author_name."</div>";
-          echo "<div class='content'>".$value->content."</div>";
+          echo "<div class='authorName'>".$value->authorName."</div>";
+          echo "<div class='message'>".$value->message."</div>";
       }
       echo "<br>";
 
@@ -52,15 +55,15 @@ $jsonArray = $jsonContent->posts;
       */?>
 
 
-      <form class= "form" action="">
+      <form class= "form" method="post" action="">
           <label for="title">Title:</label>
           <input type="text" id="title" name="title"><br><br>
 
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name"><br><br>
+          <label for="authorName">Name:</label>
+          <input type="text" id="authorName" name="authorName"><br><br>
 
           <label for="message">Message:</label>
-          <input type="text" id="message" name="message"><br><br>
+          <input type="text" id="message" name="message" class="message"><br><br>
 
           <input type="submit" value="Submit">
       </form>

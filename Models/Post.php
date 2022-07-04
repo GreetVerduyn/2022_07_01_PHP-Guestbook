@@ -7,11 +7,13 @@ Post
 {
     private string $title;
     private string $date;
-    private string $content;
+    private string $message;
     private string $authorName;
 
-    public function __construct(string $date, string $authorName ) {
+    public function __construct(string $title, string $date, string $message, string $authorName ) {
         $this->date = $date;
+        $this->title = $title;
+        $this->message=$message;
         $this->authorName= $authorName;
     }
 
@@ -33,13 +35,13 @@ Post
     }
 
 
-    public function getContent(): string
+    public function getMessage(): string
     {
-        return $this->content;
+        return $this->message;
     }
-    public function setContent(string $content)
+    public function setMessge(string $message)
     {
-        $this->content = $content;
+        $this->content = $message;
     }
 
 
